@@ -4,6 +4,13 @@
 
 目前验证的机器为 VGHH-XX，ACPI `GXFP5130:00`，固件 `GF_GCC_EC_20057`，图像尺寸 80×64。其他机器／固件尚未验证。这里保留了可构建的 libfprint 核心源码及字符设备发现扩展；软件包只启用 `gxfp` 驱动。部分原有 libfprint 框架兼容代码仍在源码中，但 Chicago 识别路径使用原生 Chicago 匹配器。
 
+## 获取源码
+
+```bash
+git clone https://github.com/lihaoze123/gxfp5130-chicago.git
+cd gxfp5130-chicago
+```
+
 ## 准备本机私有文件
 
 需要来自**同一台机器**的三个文件，不能使用他人的密钥或校准。文件在系统运行时读取，不能写进 flake、Git 或 Nix store。
@@ -36,11 +43,11 @@ sudo ./result-tools/bin/gxfp-chicago-import \
 
 ## NixOS 安装
 
-将此仓库作为 flake 输入；本地安装示例：
+将 GitHub 仓库作为 flake 输入：
 
 ```nix
 {
-  inputs.gxfp5130Chicago.url = "path:/home/你的用户名/gxfp5130-chicago";
+  inputs.gxfp5130Chicago.url = "github:lihaoze123/gxfp5130-chicago";
   # 可选：跟随系统 nixpkgs；换版本后应重新构建验证。
   # inputs.gxfp5130Chicago.inputs.nixpkgs.follows = "nixpkgs";
 
