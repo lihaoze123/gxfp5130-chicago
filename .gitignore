@@ -1,0 +1,10 @@
+result*
+/build/
+__pycache__/
+*.pyc
+*.log
+*.pgm
+*.png
+*.bin
+*.dat
+/secrets/
