@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import pwd
 import re
+import shutil
 import subprocess
 import tempfile
 import threading
@@ -130,7 +131,6 @@ def run_client(action, user, folder, label, limit, finger):
 
 def import_files(args):
     import hashlib
-    import shutil
     import extract_config
     if os.geteuid() != 0:
         raise SystemExit('导入需要 root 权限，请使用 sudo。')

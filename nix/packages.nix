@@ -7,6 +7,13 @@ let
     version = "1";
     src = ../tools;
     nativeBuildInputs = [ pkgs.makeWrapper ];
+    nativeCheckInputs = [ pkgs.python3 ];
+    doCheck = true;
+    checkPhase = ''
+      runHook preCheck
+      python3 -m unittest discover -s tests -v
+      runHook postCheck
+    '';
     installPhase = ''
       mkdir -p $out/libexec $out/bin
       cp *.py $out/libexec/
